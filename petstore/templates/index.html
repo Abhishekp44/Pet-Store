@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block 'main' %}
+
+<!--Main section start-->
+
+<div class="row">
+    <div class="col-md-3">
+      <h5>Filter By Dog Category</h5>
+      <a href="/product">ALL</a><br>
+      <a href="/catfilter/1">BEAGLE</a><br>
+      <a href="/catfilter/2">BULLDOG</a><br>
+      <a href="/catfilter/3">GERMAN SHEPHARD</a><br>
+      <a href="/catfilter/4">PODDLE</a><br>
+      <a href="/catfilter/5">ENG SPRINGER SPANIEL</a><br>
+      <a href="/catfilter/6">AIREDALE TERRIER</a><br>
+      <br>
+    </div><!--side bar end-->
+    <div class="col-md-9 p-3">
+      {% if errmsg %}
+      <div class="alert alert-danger">
+        {{errmsg}}
+      </div>
+      {% endif %}
+      <div class="row">
+        {% for x in data %}
+        <div class="col-md-3 mb-2">
+          <div class="card" style="width: 100%;">
+            <img src="{{x.pimage.url}}" class="card-img-top" alt="..." height="150px">
+            <div class="card-body">
+              <h5 class="card-title">{{x.name}}</h5>
+              <p class="card-text">{{x.age}} Months</p>
+              <p class="card-text">{{x.pdetail}}</p>
+              <p class="card-text">{{x.price}}</p>
+              <a href="/productdetail/{{x.id}}" class="btn btn-primary">See Details</a>
+            </div>
+          </div>
+        </div><!--Product1-->
+        {% endfor %}
+      </div>
+
+    </div>
+</div><!--2nd row end or Main section end-->
+
+
+
+{% endblock 'main' %}
+

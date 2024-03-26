@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% block 'main' %}
+
+<div class="row mt-3">
+    <div class="col-md-9">
+        {% for x in data %}
+        {% if forloop.counter == 1 %}
+        <div class="mt-5 shadow p-3">
+            <h4>Customer Details:</h4><hr>
+            <p><strong>Customer Name:</strong>{{x.uid.username}}</p>
+            <p><strong>Customer Email:</strong>{{x.uid.email}}</p>
+        </div>
+        {% endif %}
+        {% endfor %}
+        <div class="mt-3 btn-danger p-2">
+            <h4>ORDER SUMMERY</h4>
+        </div>
+
+        {% for x in data %}
+            <div class="row mt-5">
+                <div class="col-md-5">
+                    <img src="{{x.pid.pimage.url}}" class="card-img-top" alt="...">
+                </div>
+                <div class="col-md-7">
+                    <p><b>Product Name: </b>{{x.pid.name}}</p>
+                    <p><b>Product Details: </b>{{x.pid.pdetail}}</p>
+                    {% if x.pid.cat == 1 %}
+                        <p><b>Product Category: </b>Mobile</p>
+                    {% elif x.pid.cat == 2 %}
+                        <p><b>Product Category: </b>Shoes</p>
+                    {% else %}
+                        <p><b>Product Category: </b>Cloth</p>
+                    {% endif %}
+                    <p><b>Product Price: </b>{{x.pid.price}}</p>
+                    <p><b>Product Price :</b>Rs.{{x.pid.price}} &nbsp; per item</p>
+                    <p><b>Product Quantity :</b>{{x.qty}}</p>
+                    <p><b>Total Price :</b>Rs.{{x.amt}}</p>
+                </div><!--product1-->
+                
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+<div class="col-md-3 mt-5 p-3">
+    <h4>Price Detail</h4>
+    <p><strong>Price {{n}} Items:</strong> Rs {{total}}</p>
+    <p><strong>Total Price:</strong>Rs {{total}}</p>
+    <P><a href="/makepayment"><button class="btn btn-primary">MAKE PAYMENT</button></a></P>
+</div>
+    </div><!--2nd row end or main section end-->
+
+
+{% endblock 'main' %}

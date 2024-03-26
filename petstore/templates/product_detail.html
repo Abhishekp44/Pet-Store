@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% block 'main' %}
+<div class="row mt-3">
+    <div class="col-md-9 mx-auto">
+        <div class="row">
+            {% for x in data %}
+            <div class="col-md-5">
+                <img src="{{x.pimage.url}}" class="card-img-top" alt="...">
+            </div>
+            <div class="col-md-7">
+                {% if msg %}
+                <div class="alert alert-success">
+                    {{msg}}
+                </div>
+                {% endif %}
+
+                {% if errmsg %}
+                <div class="alert alert-danger">
+                    {{errmsg}}
+                </div>
+                {% endif %}
+
+                <p><b>Pet Name: </b>{{x.name}}</p>
+                <p><b>Pet Age: </b>{{x.age}} Months</p>
+                <p><b>Pet Details: </b>{{x.pdetail}}</p>
+                {% if x.cat == 1 %}
+                    <p><b>Pet Category: </b>BEAGLE</p>
+                {% elif x.cat == 2 %}
+                    <p><b>Pet Category: </b>BULLDOG</p>
+                    {% elif x.cat == 3 %}
+                    <p><b>Pet Category: </b>GERMAN SHEPHARD</p>
+                    {% elif x.cat == 4 %}
+                    <p><b>Pet Category: </b>PODDLE</p>
+                    {% elif x.cat == 5 %}
+                    <p><b>Pet Category: </b>ENG SPRINGER SPANIEL</p>
+                {% else %}
+                    <p><b>Pet Category: </b>AIREDALE TERRIER</p>
+                {% endif %}
+                <p><b>Pet Price: </b>{{x.price}}</p>
+                <p>
+                    <a href="/addtocart/{{x.id}}" class="btn btn-primary">Add to Cart</a>
+                    <a href="/viewcart" class="btn btn-primary">View Cart</a>
+                    <a href="/product" class="btn btn-primary">Shop More</a>
+                </p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+</div><!--2nd row end or main section end-->
+
+{% endblock %}
